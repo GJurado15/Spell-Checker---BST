@@ -3,9 +3,9 @@
 public class BinarySearchTree<Type extends Comparable<Type>> {
     // a class for one node of the tree
     private class Node {
-        public Type data;
-        public Node left;
-        public Node right;
+        private Type data;
+        private Node left;
+        private Node right;
 
         // initialize the node with the given value
         public Node(Type data) {
@@ -55,8 +55,12 @@ public class BinarySearchTree<Type extends Comparable<Type>> {
         return node;
     }
     
-    // insert a number calls recursive function to insert at the root
+    // insert a value, calls recursive function to insert at the root
     public void insert(Type value) {
+        // null can't be compared, so ignore it rather than throw an exception
+        if (value == null) {
+            return;
+        }
         root = insertAt(value, root);
     }
     
@@ -75,6 +79,10 @@ public class BinarySearchTree<Type extends Comparable<Type>> {
 
     // search for a value and return it, or null if not found
     public Type search(Type target) {
+        // null is never stored in the tree
+        if (target == null) {
+            return null;
+        }
         Node node = searchAt(target, root);
         if (node == null) {
             return null;
@@ -131,6 +139,10 @@ public class BinarySearchTree<Type extends Comparable<Type>> {
 
     // remove a given value from the tree
     public void remove(Type value) {
+        // null is never stored in the tree, so there is nothing to remove
+        if (value == null) {
+            return;
+        }
         root = removeAt(value, root);
     }
 
