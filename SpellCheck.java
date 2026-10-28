@@ -2,10 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class Main {
+public class SpellCheck {
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.err.println("Usage: java Main <dictionary file>");
+            System.err.println("Usage: java SpellCheck <dictionary file>");
             return;
         }
 
@@ -23,10 +23,9 @@ class Main {
             return;
         }
 
-        System.out.println("Height of the tree: " + bst.height());
+        System.out.println("Loaded the words into a tree with height = " + bst.height());
 
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter words to spell check (type END to quit):");
 
         // Check each word the user types until they enter END
         while (input.hasNext()) {
@@ -37,7 +36,7 @@ class Main {
 
             // Only report words that aren't in the dictionary
             if (bst.search(word) == null) {
-                System.out.println(word + " is misspelled");
+                System.out.println(word + " is spelled wrong!");
             }
         }
 
